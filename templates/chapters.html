@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<body>
+<label id="chapters">
+    {% for chapter in chapters %}
+    <h2> {{chapter.heading}} </h2>
+    <p> {{chapter.description}} </p>
+    <p> Video: </p>
+    <video width="400" height="300" controls>
+    <source src="video/{{chapter.video_path}}" type="video/mp4">
+    </video>
+    {% endfor %}
+</body>
+</html>

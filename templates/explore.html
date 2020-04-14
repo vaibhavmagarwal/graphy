@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<body>
+<label id="graphies">
+    {% for graphy in graphies %}
+    <p><a href="chapters/{{graphy.id}}"> {{ graphy.title }} </a></p>
+    <img src="image/{{graphy.image_name}}"><br>
+    ---------------------------------------------- <br>
+    {% endfor %}
+</label>
+</body>
+</html>
