@@ -1,7 +1,7 @@
 console.log("Hello!")
 var chp_number = 1;
 $("button").click(function() {
-   $("#list").append("<label> Chapter Title: </label>");
+   $("#list").append("<br><label> Chapter Title: </label>");
    var chp_title = "chp_title" + chp_number;
    $("#list").append("<input type=\"text\" name=" + chp_title + " /><br><br>");
    $("#list").append("<label> Chapter Description: </label>");

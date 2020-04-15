@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <body>
-<label id="chapters">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<label>
     {% for chapter in chapters %}
     <h2> {{chapter.heading}} </h2>
     <p> {{chapter.description}} </p>
@@ -10,5 +11,15 @@
     <source src="video/{{chapter.video_path}}" type="video/mp4">
     </video>
     {% endfor %}
+</label>
+
+<form action="/upload-chapter/{{graphy_id}}" method="post" enctype="multipart/form-data">
+    <ol id="list">
+    </ol>
+    <button type="button">Add Chapter</button><br>
+    <input type="submit" id="submit"> </input>
+</form>
+
+<script src="../static/js/chapter.js"></script>
 </body>
 </html>
