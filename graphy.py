@@ -149,7 +149,7 @@ def get_chapters(graphy_id):
     result = []
     with app.app_context():
         db, cur = get_db_cursor()
-        cur.execute("select * from CHAPTER where graphy_id=?", (graphy_id))
+        cur.execute("select * from CHAPTER where graphy_id=?", (graphy_id,))
         rows = cur.fetchall()
         for row in rows:
             dictionary = {
