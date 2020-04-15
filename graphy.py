@@ -1,12 +1,14 @@
 import os
 import sqlite3
+import sys
 from flask import Flask, render_template, request, g, send_from_directory
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
-DATABASE = 'sqlite_db/database.db'
-IMAGE_FOLDER = 'static/images/'
-VIDEO_FOLDER = 'static/videos/'
+here = os.path.dirname(__file__)
+DATABASE = os.path.join(here, 'sqlite_db/database.db')
+IMAGE_FOLDER = os.path.join(here, 'static/images/')
+VIDEO_FOLDER = os.path.join(here, 'static/videos/')
 
 
 def get_db_cursor():
@@ -77,7 +79,7 @@ def get_chp_details(form, files, graphy_id):
     result = []
 
     for key, value_dict in sorted(chp_dict.items()):
-        if set(("heading", "description", "video_path")) > value_dict.keys():
+        if set(("heading", "description", "video_path")) > set(value_dict.keys()):
             # Skip over incomplete chapters
             continue
         tup = (value_dict['heading'], value_dict['description'], value_dict['video_path'], graphy_id)
@@ -89,7 +91,6 @@ def sanitize_form_and_files(files, form):
     # We require atleast the title and photo of a new graphy, chapters are optional
     # Also check videos are mp4 or avi
     # return false if above conditions is not true
-    print(files)
     for key in files:
 
         try:
@@ -163,5 +164,5 @@ def get_chapters(graphy_id):
 
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='127.0.0.1', port=port)
+    port = int(os.environ.get("PORT", 80))
+    app.run(host='0.0.0.0', port=port)
